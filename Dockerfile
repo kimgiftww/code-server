@@ -27,7 +27,7 @@ RUN code-server --install-extension esbenp.prettier-vscode ms-python.python
 
 # Install apt packages:
 RUN sudo apt-get install -y python3 python3-venv python3-pip
-RUN pip install -y justpy pandas
+RUN pip install --no-input justpy pandas
 
 # Copy files: 
 # COPY deploy-container/myTool /home/coder/myTool
