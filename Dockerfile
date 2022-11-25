@@ -1,7 +1,8 @@
 # Start from the code-server Debian base image
 FROM codercom/code-server
 
-USER coder
+# USER coder
+USER root
 
 # Apply VS Code settings
 COPY deploy-container/settings.json .local/share/code-server/User/settings.json
@@ -10,23 +11,23 @@ COPY deploy-container/settings.json .local/share/code-server/User/settings.json
 ENV SHELL=/bin/bash
 
 # Install unzip + rclone (support for remote filesystem)
-RUN sudo apt-get update && sudo apt-get install unzip -y
+RUN apt-get update && sudo apt-get install unzip -y
 # RUN curl https://rclone.org/install.sh | sudo bash
 
 # Copy rclone tasks to /tmp, to potentially be used
 # COPY deploy-container/rclone-tasks.json /tmp/rclone-tasks.json
 
 # Fix permissions for code-server
-RUN sudo chown -R coder:coder /home/coder/.local
+# RUN sudo chown -R coder:coder /home/coder/.local
 
 # You can add custom software and dependencies for your environment below
 # -----------
 
 # Install a VS Code extension:
-RUN code-server --install-extension esbenp.prettier-vscode ms-python.python
+RUN code-server --install-extension ms-python.python
 
 # Install apt packages:
-RUN sudo apt-get install -y python3 python3-venv python3-pip
+RUN apt-get install -y python3 python3-venv python3-pip
 RUN pip install --no-input justpy pandas
 
 # Copy files: 
