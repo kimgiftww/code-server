@@ -6,6 +6,7 @@ USER root
 
 # Apply VS Code settings
 COPY deploy-container/settings.json .local/share/code-server/User/settings.json
+COPY config.yaml /root/.config/code-server/config.yaml
 
 # Use bash shell
 ENV SHELL=/bin/bash
@@ -25,6 +26,7 @@ RUN apt-get update && sudo apt-get install unzip -y
 
 # Install a VS Code extension:
 RUN code-server --install-extension ms-python.python
+RUN code-server --install-extension esbenp.prettier-vscode
 
 # Install apt packages:
 RUN apt-get install -y python3 python3-venv python3-pip
