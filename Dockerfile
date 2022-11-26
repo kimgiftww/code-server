@@ -37,6 +37,7 @@ RUN pip install --no-input justpy pandas
 
 # Port
 ENV PORT=8080
+EXPOSE 8888 8000 9999 9000
 
 # Use our custom entrypoint script first
 COPY deploy-container/entrypoint.sh /usr/bin/deploy-container-entrypoint.sh
